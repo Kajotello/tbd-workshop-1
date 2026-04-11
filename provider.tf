@@ -1,12 +1,14 @@
 provider "google" {
   project = var.project_name
   region  = var.region
-}
 
-default_labels = {
+  default_labels = {
     environment = "Dev"
     service     = "workshop"
   }
+}
+
+
 
 provider "docker" {
   registry_auth {
