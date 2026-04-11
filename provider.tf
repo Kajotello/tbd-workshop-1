@@ -3,8 +3,8 @@ provider "google" {
   region  = var.region
 
   default_labels = {
-    environment = "Dev"
-    service     = "workshop"
+    Environment = "Dev"
+    Service     = "workshop"
   }
 }
 
