@@ -1,11 +1,6 @@
 provider "google" {
   project = var.project_name
   region  = var.region
-
-  default_labels = {
-    Environment = "Dev"
-    Service     = "workshop"
-  }
 }
 
 
