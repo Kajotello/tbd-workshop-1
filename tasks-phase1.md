@@ -57,9 +57,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
-
-   ***link to forked repo***
+   Group 16
+   https://github.com/Kajotello/tbd-workshop-1
+   
 
 2. Follow all steps in README.md.
 
