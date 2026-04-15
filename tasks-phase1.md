@@ -106,6 +106,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ***place your diagram here - DONE***
 
     ![Architecture diagram](doc/figures/architecture-diagram.png)
+   
     diagram presents main components of solution: GitHub Actions and Terraform used for deployment, Airflow used for orchestration, Dataproc used for Spark processing, Cloud Storage buckets used for code and data and BigQuery used for querying results,      also includes the main service accounts and storage buckets used in the project.
 
 9. Create a new PR and add costs by entering the expected consumption into Infracost
