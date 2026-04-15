@@ -79,7 +79,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ***describe one selected module and put the output of terraform graph for this module here-TODO***
 
-    Dataproc module - module that prepre Google Dataproc environemnt (for running Haddop or Spark cluster) with all necessary IAM and buckets configuration - prośba o  rozwinięcie. Można opisać variables/output i kilka resources
+    Dataproc module - module that prepres Google Dataproc environment used to run Spark jobs in the project, it creates the Dataproc cluster itself, dedicated service account, staging and temporary cloud storage buckets and the IAM permissions required      for cluster to work correctly. The graph shows that Dataproc cluster depends on some supporting resources like enabled Dataproc service, Dataproc service account, bucket acess configuration for staging and temp buckets, and IAM roles such as             Dataproc Worker, BigQuery User and BigQuery Data Editor. In this project, this module is used later by Airflow to run the Spark job and save processed results to cloud storage. Module is configured using variables such as projetc and machine             settings, which makes is reusable and easier to manage.
 
      ![img.svg](doc/figures/dataproc.svg)
 
@@ -235,7 +235,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***why does ORC not require a table schema?***
 
-    Because OCR data already contained information about structure as metadata. This metadata could be used during table creation to conclude schema for the table (do uzupełnienia)
+    Because ORC data already contained information about structure as metadata. This metadata could be used during table creation to conclude schema for the table (do uzupełnienia)
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
