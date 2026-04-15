@@ -322,4 +322,5 @@ jobs:
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
 ***write one sentence why scheduling cleanup helps in this workshop - DONE***
+
 Scheduling automatic cleanup helps prevent unused cloud resources from being left running and generating unnecessary additional costs during the workshop.
