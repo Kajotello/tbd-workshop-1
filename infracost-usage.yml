@@ -4,13 +4,13 @@
 # See docs: https://infracost.io/usage-file/
 version: 0.1
 resource_usage:
-  google_artifact_registry_repository.my_artifact_registry:
+  google_artifact_registry_repository.registry:
     storage_gb: 500 # Total data stored in the repository in GB
     monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
       europe_north1: 400 # GB of data delivered from the artifact registry to europe-north1.
       australia_southeast1: 50 # GB of data delivered from the artifact registry to australia-southeast1.
 
-  google_storage_bucket.my_storage_bucket:
+  google_storage_bucket.dataproc_staging:
     storage_gb: 200                   # Total size of bucket in GB.
     monthly_class_a_operations: 30000 # Monthly number of class A operations (object adds, bucket/object list).
     monthly_class_b_operations: 20000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
@@ -21,4 +21,38 @@ resource_usage:
       asia: 1000           # Asia excluding China, but including Hong Kong.
       china: 0            # China excluding Hong Kong.
       australia: 10       # Australia.
+    
+  google_storage_bucket.dataproc_temp:
+    storage_gb: 50
+    monthly_class_a_operations: 5000
+    monthly_class_b_operations: 10000
+
+  google_storage_bucket.tbd-code-bucket:
+    storage_gb: 15
+    monthly_class_a_operations: 1000
+    monthly_class_b_operations: 5000
+    
+  google_storage_bucket.tbd-data-bucket:
+    storage_gb: 2000
+    monthly_class_a_operations: 50000
+    monthly_class_b_operations: 200000
+    monthly_egress_data_transfer_gb: 500
+
+  google_storage_bucket.notebook-conf-bucket:
+    storage_gb: 20
+
+  google_storage_bucket.mlflow_artifacts_bucket:
+    storage_gb: 200
+    monthly_class_a_operations: 15000
+    monthly_class_b_operations: 40000
+
+  google_storage_bucket.project_bucket:
+    storage_gb: 50
+    monthly_class_a_operations: 1000
+    monthly_class_b_operations: 4000
+
+  google_storage_bucket.tbd-state-bucket:
+    storage_gb: 5
+    monthly_class_a_operations: 1000
+    monthly_class_b_operations: 50000
 
