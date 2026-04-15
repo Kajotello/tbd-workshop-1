@@ -243,16 +243,17 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***place the link to the modified file and inserted terraform code***
 
+    https://github.com/Kajotello/tbd-workshop-1/blob/master/modules/dataproc/main.tf
+
     ```
     ...
-    secondary_worker_config {
+    preemptible_worker_config {
       num_instances = 4
-      machine_type  = var.machine_type
       preemptibility = "SPOT" 
     }
     ```
 
-13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+14. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
