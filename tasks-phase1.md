@@ -77,7 +77,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here-TODO***
+    ***describe one selected module and put the output of terraform graph for this module here - DONE***
 
     Dataproc module - module that prepres Google Dataproc environment used to run Spark jobs in the project, it creates the Dataproc cluster itself, dedicated service account, staging and temporary cloud storage buckets and the IAM permissions required      for cluster to work correctly. The graph shows that Dataproc cluster depends on some supporting resources like enabled Dataproc service, Dataproc service account, bucket acess configuration for staging and temp buckets, and IAM roles such as             Dataproc Worker, BigQuery User and BigQuery Data Editor. In this project, this module is used later by Airflow to run the Spark job and save processed results to cloud storage. Module is configured using variables such as projetc and machine             settings, which makes is reusable and easier to manage.
 
