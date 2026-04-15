@@ -103,11 +103,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     1. Description of the components of service accounts
     2. List of buckets for disposal
 
-    ***place your diagram here - TODO***
+    ***place your diagram here - DONE***
 
-    Nie rozumiem co mamy tutaj zrobić na dobrą sprawę
+    ![Architecture diagram](doc/figures/architecture-diagram.png)
+    diagram presents main components of solution: GitHub Actions and Terraform used for deployment, Airflow used for orchestration, Dataproc used for Spark processing, Cloud Storage buckets used for code and data and BigQuery used for querying results,      also includes the main service accounts and storage buckets used in the project.
 
-8. Create a new PR and add costs by entering the expected consumption into Infracost
+9. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry_repository`, `google_storage_bucket`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
@@ -137,7 +138,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-9. Find and correct the error in spark-job.py
+10. Find and correct the error in spark-job.py
 
     After `terraform apply` completes, connect to the Airflow cluster:
     ```bash
