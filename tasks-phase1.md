@@ -77,9 +77,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here-TODO***
+    ***describe one selected module and put the output of terraform graph for this module here - DONE***
 
-    Dataproc module - module that prepre Google Dataproc environemnt (for running Haddop or Spark cluster) with all necessary IAM and buckets configuration - prośba o  rozwinięcie. Można opisać variables/output i kilka resources
+    Dataproc module - module that prepres Google Dataproc environment used to run Spark jobs in the project, it creates the Dataproc cluster itself, dedicated service account, staging and temporary cloud storage buckets and the IAM permissions required      for cluster to work correctly. The graph shows that Dataproc cluster depends on some supporting resources like enabled Dataproc service, Dataproc service account, bucket acess configuration for staging and temp buckets, and IAM roles such as             Dataproc Worker, BigQuery User and BigQuery Data Editor. In this project, this module is used later by Airflow to run the Spark job and save processed results to cloud storage. Module is configured using variables such as projetc and machine             settings, which makes is reusable and easier to manage.
 
      ![img.svg](doc/figures/dataproc.svg)
 
@@ -103,11 +103,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     1. Description of the components of service accounts
     2. List of buckets for disposal
 
-    ***place your diagram here - TODO***
+    ***place your diagram here - DONE***
 
-    Nie rozumiem co mamy tutaj zrobić na dobrą sprawę
+    ![Architecture diagram](doc/figures/architecture-diagram.png)
+   
+    diagram presents main components of solution: GitHub Actions and Terraform used for deployment, Airflow used for orchestration, Dataproc used for Spark processing, Cloud Storage buckets used for code and data and BigQuery used for querying results,      also includes the main service accounts and storage buckets used in the project.
 
-8. Create a new PR and add costs by entering the expected consumption into Infracost
+9. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry_repository`, `google_storage_bucket`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
@@ -165,7 +167,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ![img.png](doc/figures/infracost.png)
 
-9. Find and correct the error in spark-job.py
+10. Find and correct the error in spark-job.py
 
     After `terraform apply` completes, connect to the Airflow cluster:
     ```bash
@@ -263,7 +265,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***why does ORC not require a table schema? - TODO***
 
-    Because OCR data already contained information about structure as metadata. This metadata could be used during table creation to conclude schema for the table (do uzupełnienia)
+    Because ORC data already contained information about structure as metadata, so BigQuery can read schema automatically when creating external table, and so the schema does not need to be defined manually in SQL.
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
@@ -271,16 +273,17 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
         
     https://github.com/Kajotello/tbd-workshop-1/blob/master/modules/dataproc/main.tf
 
+    https://github.com/Kajotello/tbd-workshop-1/blob/master/modules/dataproc/main.tf
+
     ```
     ...
-    secondary_worker_config {
+    preemptible_worker_config {
       num_instances = 4
-      machine_type  = "var.machine_type
       preemptibility = "SPOT" 
     }
     ```
 
-13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+14. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
@@ -349,5 +352,9 @@ jobs:
 
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
-***write one sentence why scheduling cleanup helps in this workshop - TODO***
-It prevent leaving usnused resources which may generate unnecessar cost (do uzupełnienia)
+![Auto destroy workflow run](doc/figures/auto-destroy-run.png)
+
+
+***write one sentence why scheduling cleanup helps in this workshop***
+
+Scheduling automatic cleanup helps prevent unused cloud resources from being left running and generating unnecessary additional costs during the workshop.
