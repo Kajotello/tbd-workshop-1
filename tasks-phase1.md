@@ -237,7 +237,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***why does ORC not require a table schema?***
 
-    Because ORC data already contained information about structure as metadata. This metadata could be used during table creation to conclude schema for the table (do uzupełnienia)
+    Because ORC data already contained information about structure as metadata, so BigQuery can read schema automatically when creating external table, and so the schema does not need to be defined manually in SQL.
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
@@ -247,7 +247,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ...
     secondary_worker_config {
       num_instances = 4
-      machine_type  = "var.machine_type
+      machine_type  = var.machine_type
       preemptibility = "SPOT" 
     }
     ```
@@ -321,4 +321,5 @@ jobs:
 
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
-***write one sentence why scheduling cleanup helps in this workshop***
+***write one sentence why scheduling cleanup helps in this workshop - DONE***
+Scheduling automatic cleanup helps prevent unused cloud resources from being left running and generating unnecessary additional costs during the workshop.
