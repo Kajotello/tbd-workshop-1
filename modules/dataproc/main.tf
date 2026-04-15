@@ -134,9 +134,8 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
       }
     }
 
-    secondary_worker_config {
+    preemptible_worker_config {
       num_instances = 4
-      machine_type  = var.machine_type
       preemptibility = "SPOT" 
     }
 
