@@ -8,12 +8,12 @@ resource_usage:
     storage_gb: 500 # Total data stored in the repository in GB
     monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
       europe_north1: 400 # GB of data delivered from the artifact registry to europe-north1.
-      australia_southeast1: 50 # GB of data delivered from the artifact registry to australia-southeast1.
+      australia_southeast1: 0 # GB of data delivered from the artifact registry to australia-southeast1.
 
   google_storage_bucket.tbd-state-bucket:
-    storage_gb: 200                   # Total size of bucket in GB.
-    monthly_class_a_operations: 30000 # Monthly number of class A operations (object adds, bucket/object list).
-    monthly_class_b_operations: 20000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    storage_gb: 20                   # Total size of bucket in GB.
+    monthly_class_a_operations: 3000 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 2000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
     monthly_data_retrieval_gb: 800    # Monthly amount of data retrieved in GB.
     monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
       same_continent: 10  # Same continent.
@@ -32,21 +32,13 @@ resource_usage:
     monthly_class_a_operations: 5000
     monthly_class_b_operations: 10000
 
-  module.data-pipeline.google_storage_bucket.tbd-code-bucket:
+  module.data-pipelines.google_storage_bucket.tbd-code-bucket:
     storage_gb: 15
     monthly_class_a_operations: 1000
     monthly_class_b_operations: 5000
     
-  module.data-pipeline.google_storage_bucket.tbd-data-bucket:
+  module.data-pipelines.google_storage_bucket.tbd-data-bucket:
     storage_gb: 2000
     monthly_class_a_operations: 50000
     monthly_class_b_operations: 200000
     monthly_egress_data_transfer_gb: 500
-
-  module.vertex-ai-workbench.google_storage_bucket.notebook-conf-bucket:
-    storage_gb: 20
-
-  module.mlflow.google_storage_bucket.mlflow_artifacts_bucket:
-    storage_gb: 200
-    monthly_class_a_operations: 15000
-    monthly_class_b_operations: 40000
